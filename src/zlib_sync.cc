@@ -63,6 +63,10 @@ class ZlibSyncInflate : public ObjectWrap {
             }
         }
 
+        ~ZlibSyncInflate() {
+          inflateEnd(&stream);
+        }
+
         static NAN_METHOD(Push) {
             ZlibSyncInflate* self = ObjectWrap::Unwrap<ZlibSyncInflate>(info.This());
             Local<Object> buffer = Local<Object>::Cast(info[0]);
